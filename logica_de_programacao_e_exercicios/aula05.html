@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+
+        <script>
+
+            function teste() {
+                console.log('Chamando a função teste');
+            }
+
+            function teste2(nome, idade) {
+                console.log('O nome passado é: ' + nome);
+                console.log('A idade é: ' + idade);
+            }
+
+            teste()
+
+            teste2('Estael', 24)
+            teste2('Joao', 25)
+
+            function pegarNome(parametro) {
+                if(parametro == 1) {
+                    return 'Estael'
+                } else {
+                    return 'Outro nome'
+                }
+
+                return 'Estael'
+                console.log('Testess');
+            }
+
+            var nome = pegarNome(1)
+            console.log(nome);
+
+            console.log('----------------------------');
+
+            /*
+            const func = function() {
+                alert('Olá mundo')
+            }
+
+            func()
+            */
+
+            (function() {
+                console.log('Olá mundo');
+            })();
+
+        </script>
+
+    </body>
+</html>
