@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-left: 0;
+        }
+
+        .box:hover {
+            cursor: pointer;
+        }
+
+        .anim {
+            transition: 1s;
+            margin-left: 90px;
+            margin-top: 20px;
+            background-color: green;
+        }
+        */
+
+        .conteudo h2 span {
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .conteudo p {
+            overflow: hidden;
+            height: 10px;
+            transition: 0.4s;
+        }
+
+        .mostrar {
+            height: auto !important;
+        }
+
+    </style>
+
+    <body>
+
+        <!--<div class="box"></div>-->
+
+        <div class="conteudo">
+            <h2>Titulo do conteúdo <span>Ver Mais!</span> </h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis nostrum deserunt eius quos, dolorum consequuntur quibusdam tempore voluptate velit veniam animi voluptatum adipisci recusandae quo quidem delectus sit officia earum. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus inventore sint iure quos animi laborum quod velit sed, molestiae necessitatibus, dignissimos, eaque sunt eius repudiandae temporibus natus atque? Sit, atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nesciunt reprehenderit voluptates, deserunt sit totam eum eius voluptas quasi quod animi fugiat magnam debitis! Minus rem quaerat in mollitia quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, saepe accusantium provident, officiis ratione ipsum totam ab adipisci odit quisquam cupiditate illum deserunt laudantium amet ad quia repudiandae. Laudantium, perspiciatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo necessitatibus provident beatae laudantium saepe libero dolore, atque ea reiciendis voluptas eveniet adipisci, ab quas dolorem dignissimos minus officia eum laboriosam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis temporibus at a quidem quisquam doloremque minus, dolore nemo quia rerum consectetur illum deserunt et impedit recusandae. Nostrum ipsa quasi accusamus?</p>
+        </div>
+
+        <div class="conteudo">
+            <h2>Titulo do conteúdo <span>Ver Mais!</span> </h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis nostrum deserunt eius quos, dolorum consequuntur quibusdam tempore voluptate velit veniam animi voluptatum adipisci recusandae quo quidem delectus sit officia earum. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus inventore sint iure quos animi laborum quod velit sed, molestiae necessitatibus, dignissimos, eaque sunt eius repudiandae temporibus natus atque? Sit, atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nesciunt reprehenderit voluptates, deserunt sit totam eum eius voluptas quasi quod animi fugiat magnam debitis! Minus rem quaerat in mollitia quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, saepe accusantium provident, officiis ratione ipsum totam ab adipisci odit quisquam cupiditate illum deserunt laudantium amet ad quia repudiandae. Laudantium, perspiciatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo necessitatibus provident beatae laudantium saepe libero dolore, atque ea reiciendis voluptas eveniet adipisci, ab quas dolorem dignissimos minus officia eum laboriosam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis temporibus at a quidem quisquam doloremque minus, dolore nemo quia rerum consectetur illum deserunt et impedit recusandae. Nostrum ipsa quasi accusamus?</p>
+        </div>
+
+    </body>
+
+    <script>
+
+        var elemento_box = document.querySelectorAll('.box')[0]
+
+        /*
+        setTimeout(() => {
+            elemento_box.classList.add('anim')
+        }, 1000)
+        */
+
+        /*
+        elemento_box.addEventListener('click', () => {
+            elemento_box.classList.add('anim')
+        })
+        */
+
+        var spanList = document.querySelectorAll('.conteudo h2 span')
+
+        spanList.forEach(span => {
+            span.addEventListener('click', () => {
+                console.log(span);
+                var conteudo = document.querySelector('.conteudo p')
+    
+                if(conteudo.classList.contains('mostrar')) {
+                    conteudo.classList.remove('mostrar')
+                    span.innerHTML = 'Ver Mais!'
+                    
+                } else {
+                    conteudo.classList.add('mostrar')
+                    span.innerHTML = 'Ocultar!'
+                }
+    
+            })
+        })
+
+
+    </script>
+
+
+</html>

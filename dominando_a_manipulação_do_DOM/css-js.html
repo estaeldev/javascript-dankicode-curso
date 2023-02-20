@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <!--<div id="box"></div>-->
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+    </body>
+
+    <script>
+
+        /*
+        var elemento_div = document.getElementById('box')
+        elemento_div.style.maxWidth = 100
+        elemento_div.style.maxHeight = 100
+        elemento_div.style.marginLeft = 200
+        elemento_div.style.backgroundColor = 'blue'
+        console.log(elemento_div)
+        */
+
+        var elementos_box = document.getElementsByClassName('box')
+
+        /*
+        elementos_box[0].style.width = 100
+        elementos_box[0].style.height = 100
+        console.log(elementos_box[0]);
+        */
+
+        for(var i=0; i<elementos_box.length; i++) {
+            var elemento = elementos_box[i]
+            elemento.style.width = 100
+            elemento.style.height = 100
+            elemento.style.backgroundColor = 'green'
+            elemento.style.border = 1, 'solid', 'red'
+            console.log(elemento);
+        }
+        
+        
+
+    </script>
+
+</html>
