@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <style>
+
+        .container {
+            position: relative;
+            height: 500px;
+        }
+
+        .container img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300;
+            height: 300px;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .bullets {
+            text-align: center;
+        }
+
+        .bullet-single {
+            margin: 0 8px;
+            cursor: pointer;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .active-bullet {
+            background-color: #333;
+        }
+
+
+    </style>
+
+    <body>
+        
+        <div class="container">
+            <img style="opacity: 1;" src="http://picsum.photos/id/237/300/200" alt="">
+            <img src="http://picsum.photos/id/238/300/200" alt="">
+            <img src="http://picsum.photos/id/239/300/200" alt="">
+        </div>
+
+        <div class="bullets">
+            <div class="bullet-single active-bullet"></div>
+            <div class="bullet-single"></div>
+            <div class="bullet-single"></div>
+        </div>
+
+    </body>
+
+    <script>
+        var lastIndex = 0
+
+        var images = document.querySelectorAll('.container img')
+
+        images.forEach((image, index) => {
+            document.querySelectorAll('.bullet-single')[index].addEventListener('click', () => {
+                let lastImage = document.querySelectorAll('.container img')[lastIndex]
+                let actualImage = document.querySelectorAll('.container img')[index]
+                
+                document.querySelectorAll('.bullet-single')[lastIndex].classList.remove('active-bullet')
+                document.querySelectorAll('.bullet-single')[index].classList.add('active-bullet')
+                
+                lastImage.style.opacity = 0
+                actualImage.style.opacity = 1                
+                lastIndex = index
+            })
+        })
+
+    </script>
+
+</html>
