@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+            var date = new Date()
+
+            // dia do mês
+            console.log(date.getDate());
+
+            // dia da semana
+            console.log(date.getDay());
+
+            // ano
+            console.log(date.getFullYear());
+
+            // horas
+            console.log(date.getHours());
+
+            // minutos
+            console.log(date.getMinutes());
+
+            console.log('--------------------');
+
+
+            var data2 = new Date('02/20/2023')
+            var data3 = new Date('02/22/2023')
+
+            console.log(data2.getDate());
+
+            var diferenca = data3.getTime() - data2.getTime()
+            console.log(new Date(diferenca).getDate());
+
+
+
+
+        </script>
+        
+    </body>
+</html>
