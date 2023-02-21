@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    width: 100%;
+    background-color: #5a71bb;
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+}
+
+.lista-cadastro {
+    display: flex;
+    column-gap: 20px;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.lista-cadastro input {
+    flex: 1;
+    height: 40px;
+    padding-left: 40px;
+}
+
+.lista-produtos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.lista-produto-single {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;  
+    border-bottom: 1px solid #ccc;
+}
+
+.lista-produto-single h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lista-produto-single h3 span {
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 10px;
+    background-color: rgb(255, 62, 62);
+    color: black;
+    transition: 0.4s;
+}
+
+.lista-produto-single h3 span:hover {
+    cursor: pointer;
+    background-color: #5a71bb;
+    color: white;
+}
+
+.lista-produto-single strong {
+    color: white;
+    background-color: #5a71bb;
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+
+.soma-produtos {
+    width: 100%;
+    max-width: 1300px;
+    flex: 1;
+    margin-top: 20px;
+}
+
+.soma-produtos strong {
+    font-size: 20px;
+}
+
+.soma-produtos strong span {
+    color: white;
+    background-color: #5a71bb;
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+
+footer {
+    width: 100%;
+    max-width: 1300px;
+    margin-top: 30px;
+
+}
+
+footer button {
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #97a9e1;
+    color: white;
+}
+
+footer button:hover {
+    transition: 0.4s;
+    background-color: #5a71bb;
+    font-weight: bold;
+}
