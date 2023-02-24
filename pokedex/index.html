@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Pokedex</title>
+    </head>
+
+    <body>
+        
+        <div class="app">
+            <h2>Pokedex</h2>
+
+            <div class="pokemon-boxes">
+
+            </div>
+
+        </div>
+        
+    </body>
+
+    <script>
+        
+        const elementoPokemonBoxes = document.querySelector('.pokemon-boxes')
+        const pokemons = []
+        const pokemonsLimit = 15
+
+        fetch('https://pokeapi.co/api/v2/pokemon?limit='+pokemonsLimit)
+            .then(reponse => reponse.json())
+            .then(json => {
+
+                json.results.map(value => {
+
+                    fetch(value.url)    
+                    .then(response => response.json())
+                    .then(json => {
+                        const url = json.sprites.front_default
+                        pokemons.push({nome: value.name, url: url})
+
+                        if(pokemons.length == pokemonsLimit) {
+                            pokemons.forEach(pokemon => {
+                                elementoPokemonBoxes.innerHTML += `
+                                <div class="pokemon-boxe">
+                                    <img src="${pokemon.url}" alt="">
+                                    <span>${pokemon.nome}</span>
+                                </div>
+                                `
+                            }) 
+                        }
+
+                    })
+
+                    
+                })
+                
+            })
+
+
+    </script>
+
+
+</html>
