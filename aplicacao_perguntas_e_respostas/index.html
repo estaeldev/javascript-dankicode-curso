@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pergunta - Resposta</title>
+    </head>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: turquoise;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .container .content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 30px;
+            padding: 20px 1%;
+        }
+
+        .container .content .pergunta {
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+            padding: 20px;
+            margin: 0 auto; 
+            border-radius: 10px;
+            background-color: rgb(185, 185, 185);
+            
+        }
+
+        .container .content .pergunta .form {
+            display: flex;
+            flex-direction: column;
+            row-gap: 2px;
+        }
+
+    </style>
+
+    <body>
+
+        <div class="title">
+
+            <div class="container">
+
+                <div class="content">
+
+                    <div class="pergunta">
+                        <h1>Qual melhor site de programação ?</h1>
+                        <form class="form">
+                            <div>
+                                <span>Opção1</span>
+                                <input type="radio" name="pergunta1" value="correto">
+                            </div>
+                            <div>
+                                <span>Opção2</span>
+                                <input type="radio" name="pergunta1" value="incorreto">
+                            </div>
+                            <div>
+                                <span>Opção3</span>
+                                <input type="radio" name="pergunta1" value="incorreto">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="pergunta">
+                        <h1>Qual melhor site de programação ?</h1>
+                        <form class="form">
+                            <div>
+                                <span>Opção1</span>
+                                <input type="radio" name="pergunta1" value="correto">
+                            </div>
+                            <div>
+                                <span>Opção2</span>
+                                <input type="radio" name="pergunta1" value="incorreto">
+                            </div>
+                            <div>
+                                <span>Opção3</span>
+                                <input type="radio" name="pergunta1" value="incorreto">
+                            </div>
+                        </form>
+                    </div>
+
+                   
+
+                </div>
+
+
+            </div>
+
+            
+
+        </div>
+
+        
+    </body>
+
+    <script>
+        const elementos = document.querySelectorAll('input[type="radio"]')
+
+        function disabledInput(elemento) {
+            const inputAll = elemento.parentNode.parentNode.querySelectorAll('input[type="radio"]')
+            inputAll.forEach(elemento => elemento.disabled = true)
+        }
+
+        elementos.forEach(elemento => {
+            elemento.addEventListener('change', () => {
+                if(elemento.value == 'correto') {
+                    elemento.parentNode.style.backgroundColor = 'green'
+                    disabledInput(elemento)
+                } else if(elemento.value == 'incorreto') {
+                    elemento.parentNode.style.backgroundColor = 'red'
+                    const inputCorreto = elemento.parentNode.parentNode.querySelector('input[value="correto"]')
+                    inputCorreto.parentNode.style.backgroundColor = 'green'
+                    disabledInput(elemento)
+                }
+            })
+        })
+
+    </script>
+
+</html>

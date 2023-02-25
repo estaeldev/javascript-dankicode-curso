@@ -12,9 +12,12 @@
         
         <div class="app">
             <h2>Pokedex</h2>
-
+            <div class="form">
+                <input name="quantidade" type="number" placeholder="Insira a quantidade de pokemons...">
+                <button id="buttonQuantidade">Confirmar</button>
+            </div>
             <div class="pokemon-boxes">
-
+                
             </div>
 
         </div>
@@ -23,11 +26,14 @@
 
     <script>
         
-        const elementoPokemonBoxes = document.querySelector('.pokemon-boxes')
-        const pokemons = []
-        const pokemonsLimit = 15
+        const buttonQuantidade = document.getElementById('buttonQuantidade')
+        const inputQuantidade = document.querySelector('input[name="quantidade"]')
 
-        fetch('https://pokeapi.co/api/v2/pokemon?limit='+pokemonsLimit)
+        async function pegaPokemos(quantidade) {
+            const elementoPokemonBoxes = document.querySelector('.pokemon-boxes')
+            const pokemons = []
+
+            fetch('https://pokeapi.co/api/v2/pokemon?limit='+quantidade)
             .then(reponse => reponse.json())
             .then(json => {
 
@@ -39,7 +45,8 @@
                         const url = json.sprites.front_default
                         pokemons.push({nome: value.name, url: url})
 
-                        if(pokemons.length == pokemonsLimit) {
+                        if(pokemons.length == quantidade) {
+                            elementoPokemonBoxes.innerHTML = ''
                             pokemons.forEach(pokemon => {
                                 elementoPokemonBoxes.innerHTML += `
                                 <div class="pokemon-boxe">
@@ -54,8 +61,15 @@
 
                     
                 })
-                
             })
+        }
+
+        buttonQuantidade.addEventListener('click', () => {
+            const quantidade = inputQuantidade.value
+            pegaPokemos(quantidade)
+            inputQuantidade.value = ''
+        })
+
 
 
     </script>

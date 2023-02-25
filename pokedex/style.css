@@ -21,11 +21,52 @@ body {
     font-size: 45px;
 }
 
-.pokemon-boxes {
-    margin: 20px 0;
+.app .form {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 0;   
+    border-bottom: 1px solid #ef5350; 
+}
+
+.app .form input {
+    width: 400px;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border-style: none;
+    outline-style: none;
+    background-color: #d7d7d7;;
+}
+
+.app .form button {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    border-style: none;
+    background-color: #d7d7d7;
+    transition: 0.4s;
+}
+
+.app .form button:hover {
+    cursor: pointer;
+    color: #ef5350;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #979797;
+}
+
+.pokemon-boxes {
+    display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 20px 0;
+    display: flex;
+    perspective: 1000px;
 }
 
 .pokemon-boxe {
@@ -35,6 +76,18 @@ body {
     width: 120px;
     background-color: #d7d7d7;
     border-radius: 10px;
+    transition: 0.5s;
+    
+}
+
+.pokemon-back {
+    background-color: #ef5350;
+}
+
+.pokemon-boxe:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #979797;
 }
 
 .pokemon-boxe span {
