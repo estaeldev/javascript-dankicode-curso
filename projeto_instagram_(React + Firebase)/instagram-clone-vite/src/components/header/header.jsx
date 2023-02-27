@@ -1,5 +1,6 @@
 import styles from './styles.module.scss'
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../../firebase'
+import { auth } from '../../firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 export default function Header({user, setUser}) {
     
@@ -8,7 +9,6 @@ export default function Header({user, setUser}) {
         const modalCriarConta = document.querySelector('div[nome="modalCriarConta"]')
         modalCriarConta.style.display = 'block'        
     }
-    
     
     function closeModalCriarConta() {
         const modalCriarConta = document.querySelector('div[nome="modalCriarConta"]')
@@ -23,7 +23,7 @@ export default function Header({user, setUser}) {
         
         createUserWithEmailAndPassword(auth, email, senha).then(userCredential => {
             userCredential.user.displayName
-            
+            updateProfile(auth.currentUser, {displayName: username})
             const modalCriarConta = document.querySelector('div[nome="modalCriarConta"]')
             modalCriarConta.style.display = 'none'  
         }).catch(error => console.log(error.message))
