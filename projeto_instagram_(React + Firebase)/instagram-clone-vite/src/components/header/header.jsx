@@ -1,8 +1,13 @@
 import styles from './styles.module.scss'
-import { auth } from '../../firebase'
+import { auth, storage, db } from '../../firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useState } from 'react'
 
 export default function Header({user, setUser}) {
+    
+    const [progress, setProgress] = useState(0)
+    const [file, setFile] = useState(null)
     
     function abrirModalCriarConta(event) {
         event.preventDefault()
@@ -22,7 +27,6 @@ export default function Header({user, setUser}) {
         const senha = document.getElementById('passwordCadastro').value
         
         createUserWithEmailAndPassword(auth, email, senha).then(userCredential => {
-            userCredential.user.displayName
             updateProfile(auth.currentUser, {displayName: username})
             const modalCriarConta = document.querySelector('div[nome="modalCriarConta"]')
             modalCriarConta.style.display = 'none'  
@@ -37,6 +41,37 @@ export default function Header({user, setUser}) {
         signInWithEmailAndPassword(auth, email, senha).then(userCredential => {
             setUser({nome: userCredential.user.displayName})
         }).catch(error => console.log(error.message))
+    }
+
+    function abrirModalUpload(event) {
+        event.preventDefault()
+        const modalUpload = document.querySelector('div[nome="modalUpload"]')
+        modalUpload.style.display = 'block'   
+    }
+
+    function closeModalUpload(event) {
+        event.preventDefault()
+        const modalUpload = document.querySelector('div[nome="modalUpload"]')
+        modalUpload.style.display = 'none'   
+
+    }
+
+    async function uploadPost(event) {
+        event.preventDefault()
+        const tituloUpload = document.getElementById('tituloUpload').value
+
+        try {
+            const uploadTask = await addDoc(collection(db, `images/`), {
+                titulo: tituloUpload,
+                username: user.nome,
+                timestamp: serverTimestamp()
+            });
+          
+            console.log("Document written with ID: ", uploadTask.id);
+          } catch (erro) {
+            console.error("Error adding document: ", erro);
+          }
+
     }
 
     return (
@@ -55,6 +90,20 @@ export default function Header({user, setUser}) {
                     </div>
                 </div>
 
+                <div className={styles.modalUpload} nome='modalUpload'>
+                    <div className={styles.formUpload}>
+                        <div className={styles.closeModalUpload} onClick={closeModalUpload}>X</div>
+                        <h2>Fazer Upload</h2>
+                        <form onSubmit={(event) => uploadPost(event)}>
+                            <progress id='progressUpload' value={progress}></progress>
+                            <input id='tituloUpload' type="text" placeholder='Nome da sua foto...' />
+                            <input onChange={(event) => setFile(event.target.files[0])} id='uploadFile' type="file" />
+                            <button type='submit'>Postar no Instagram</button>
+                        </form>
+                    </div>
+                </div>
+
+
                 <div className={styles.content}>
                     <div className=''>
                         <a href=''>
@@ -66,7 +115,7 @@ export default function Header({user, setUser}) {
                         (user) ? 
                             <div className={styles.header__logadoInfo}>
                                 <span>Olá, <strong>{user.nome}</strong> </span>
-                                <a href="">Postar!</a>
+                                <a onClick={(event => abrirModalUpload(event))} href="">Postar!</a>
                             </div> 
                         : 
                             <div className={styles.header__loginForm}>
