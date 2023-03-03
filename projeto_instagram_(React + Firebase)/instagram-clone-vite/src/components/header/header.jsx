@@ -3,6 +3,7 @@ import { auth, storage, db } from '../../firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from 'react'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 export default function Header({user, setUser}) {
     
@@ -60,18 +61,25 @@ export default function Header({user, setUser}) {
         event.preventDefault()
         const tituloUpload = document.getElementById('tituloUpload').value
 
-        try {
-            const uploadTask = await addDoc(collection(db, `images/`), {
-                titulo: tituloUpload,
-                username: user.nome,
-                timestamp: serverTimestamp()
-            });
-          
-            console.log("Document written with ID: ", uploadTask.id);
-          } catch (erro) {
-            console.error("Error adding document: ", erro);
-          }
+        const storageRef = ref(storage, `images/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
 
+        uploadTask.on('state_changed', snapshot => {
+            const progressTime = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            setProgress(progressTime)
+        }, error => alert(error), () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(url => {
+                addDoc(collection(db, 'posts/'), {
+                    titulo: tituloUpload,
+                    url: url,
+                    username: user.nome,
+                    timestamp: serverTimestamp()
+                })
+            })
+            setProgress(0)
+            setFile(null)
+            document.querySelector('div[nome="modalUpload"]').reset()
+        })
     }
 
     return (
