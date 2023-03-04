@@ -10,8 +10,8 @@ export function Post({id, info}) {
 
     useEffect(() => {
         getDocs(collection(db, `posts/${id}/comentarios`)).then(snapshot => {
-            setComentarios(snapshot.docs.forEach(document => {
-                return {id: document.id, info: document.data(snapshot)}
+            setComentarios(snapshot.docs.map(comentario => {
+                return {id: comentario.id, info: comentario.data()}
             }))
         })
     }, [])
@@ -34,6 +34,19 @@ export function Post({id, info}) {
         <div key={info.username} className={styles.postSingle}>
             <img src={info.url} alt="" />
             <span> <strong>{info.username}</strong> {info.titulo} </span>
+            
+            {
+                comentarios.map(comentario => {
+                    return (
+                        <div key={comentario.id}>
+                            <span>{comentario.info.nome}</span>
+                            <span>{comentario.info.comentario}</span>
+                        </div>
+                    )
+                })
+            }
+            
+           
             <form onSubmit={event => comentar(event, id)}>
                 <textarea id={`comentario-${id}`}></textarea>
                 <button type='submit'>Comentar</button>
