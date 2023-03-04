@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 import { auth, storage, db } from '../../firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from 'react'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
@@ -41,6 +41,7 @@ export default function Header({user, setUser}) {
 
         signInWithEmailAndPassword(auth, email, senha).then(userCredential => {
             setUser({nome: userCredential.user.displayName})
+            window.location.href = '/'
         }).catch(error => console.log(error.message))
     }
 
@@ -55,6 +56,14 @@ export default function Header({user, setUser}) {
         const modalUpload = document.querySelector('div[nome="modalUpload"]')
         modalUpload.style.display = 'none'   
 
+    }
+
+    function loggout(event) {
+        event.preventDefault()
+        signOut(auth).then(value => {
+            setUser(null)
+            window.location.href = '/'
+        })
     }
 
     async function uploadPost(event) {
@@ -124,6 +133,7 @@ export default function Header({user, setUser}) {
                             <div className={styles.header__logadoInfo}>
                                 <span>Olá, <strong>{user.nome}</strong> </span>
                                 <a onClick={(event => abrirModalUpload(event))} href="">Postar!</a>
+                                <a href="" onClick={event => loggout(event)}>Deslogar</a>
                             </div> 
                         : 
                             <div className={styles.header__loginForm}>
