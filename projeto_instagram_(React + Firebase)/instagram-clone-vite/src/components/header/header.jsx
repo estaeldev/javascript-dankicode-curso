@@ -28,7 +28,7 @@ export default function Header({user, setUser}) {
         const senha = document.getElementById('passwordCadastro').value
         
         createUserWithEmailAndPassword(auth, email, senha).then(userCredential => {
-            updateProfile(auth.currentUser, {displayName: username})
+            updateProfile(auth.currentUser, {displayName: userCredential.user.displayName})
             const modalCriarConta = document.querySelector('div[nome="modalCriarConta"]')
             modalCriarConta.style.display = 'none'  
         }).catch(error => console.log(error.message))
@@ -62,6 +62,7 @@ export default function Header({user, setUser}) {
         event.preventDefault()
         signOut(auth).then(value => {
             setUser(null)
+            console.log(value)
             window.location.href = '/'
         })
     }
@@ -87,7 +88,8 @@ export default function Header({user, setUser}) {
             })
             setProgress(0)
             setFile(null)
-            document.querySelector('div[nome="modalUpload"]').reset()
+            alert('post realizado com sucesso!')
+            closeModalUpload()
         })
     }
 

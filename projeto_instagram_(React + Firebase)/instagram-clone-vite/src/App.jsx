@@ -14,13 +14,15 @@ export default function App() {
     useEffect(() => {
 
         onAuthStateChanged(auth, value => {
-            setUser({nome: value.displayName})
+            if(value) {
+                setUser({nome: value.displayName})
+            }
         })
 
         getDocs(collection(db, 'posts')).then(snapshot => {
-                snapshot.docs.forEach(document => {
-                setPosts([{id: document.id, info: document.data(snapshot)}])
-            })
+            setPosts(snapshot.docs.map(post =>  {
+                return {id: post.id, info: post.data()}
+            }))
         })
 
     }, [])
@@ -33,7 +35,7 @@ export default function App() {
             {
                 posts.map((post) => {
                     return (
-                        <Post key={post.id} id={post.id} info={post.info}></Post>
+                        <Post key={post.id} user={user} id={post.id} info={post.info}></Post>
                     )
                 })
             }

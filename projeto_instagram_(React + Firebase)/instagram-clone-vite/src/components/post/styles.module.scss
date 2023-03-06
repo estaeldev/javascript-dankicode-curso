@@ -36,3 +36,27 @@
     }
 
 }
+
+.coments {
+
+    padding: 8px 10px;
+    margin: 8px 10px;
+    border-radius: 5px;
+    background-color: rgb(226, 226, 226);
+
+    h2 {
+        color: #d2631d;
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .comentSingle {
+        font-size: 14px;
+    }
+
+}
+
+.comentsNotExist {
+    color: red;
+}
+
