@@ -1,0 +1,85 @@
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: white;
+
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0px 10px;
+        width: 100%;
+        max-width: 1200px;
+
+        .headerLeft {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+
+            .logoFb svg {
+                color: #4287f5;
+                font-size: 40px;
+            }
+
+            .searchFb {
+                background-color: rgb(230, 230, 230);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 40px;
+
+                svg {
+                    color: gray;
+                    font-size: 14px;
+                }
+
+            }
+
+            .menuFb {
+                cursor: pointer;
+                margin-left: 20px;
+                padding: 8px;
+
+                svg {
+                    color: grey;
+                    font-size: 25px;
+                }
+
+                &:hover {
+                    background-color: rgb(230, 230, 230);
+                   
+                }
+
+            }
+
+        }
+
+        .headerRight {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+
+            .plusBtn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgb(230, 230, 230);
+                
+                &:hover {
+                    cursor: pointer;
+                }
+
+            }
+
+        }
+
+    }
+
+}
