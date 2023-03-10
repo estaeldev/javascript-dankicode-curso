@@ -1,7 +1,9 @@
 import styles from './App.module.scss';
+import Feed from './components/feed';
+import FeedPost from './components/feedPost';
 import Header from './components/header';
 import Stories from './components/stories';
-import fotoPerfil from './resources/foto.jpg'
+
 
 function App() {
 
@@ -10,30 +12,20 @@ function App() {
 
             <Header />
             <Stories />
+            <Feed />
             
-            <div className={styles.feed}>
-
-                <div className={styles.center}>
-                    <div className={styles.feedTop}>
-                        <img src={fotoPerfil} alt="" />
-                        <input type="text" placeholder='No que você está pensando, Estael Meireles ?' />
-                    </div>
-                    <div className={styles.feedBottom}>
-                        <div className={styles.feedBottom__video}>
-                            <span>Video ao vivo</span>
-                        </div>
-                        <div className={styles.feedBottom__foto}>
-                            <span>Foto/video</span>
-                        </div>
-                        <div className={styles.feedBottom__setimento}>
-                            <span>Sentimento/atividade</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
+            {
+                [1,2,3,4,5].map((value, index) => {
+                    return (
+                        <FeedPost key={index} 
+                            nome='Estael Meireles' 
+                            hora='4' 
+                            mensagem='Foto de perfil, estudando programação!!!' 
+                        />
+                    )
+                })
+            }
+        
         </div>
     );
     
